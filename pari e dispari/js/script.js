@@ -7,19 +7,10 @@ Dichiariamo chi ha vinto. */
 
 
 
-const btnUp = document.querySelector(".pari");
-const btnDown = document.querySelector(".dispari");
+const btnPari = document.querySelector(".pari");
+const btnDispari = document.querySelector(".dispari");
 
-function numCasuale() {
-    Math.ceil(Math.random() * 5);
-}
-
-
-
-//L'UTENTE DEVE SCEGLIERE PARI O DISPARI
-btnUp.addEventListener("click", function () {
-    console.log("freccia su");
-
+function gioco(scelta) {
     //L'UTENTE SCEGLIE UN NUMERO DA 1 A 5
     const numUtente = prompt("Scegli un numero da 1 a 5");
     console.log("numero utente " + numUtente);
@@ -34,7 +25,11 @@ btnUp.addEventListener("click", function () {
 
     // SOMMIAMO I DUE NUM
     const sommaNum = parseInt(numUtente) + numComputer;
-    console.log("somma dei due numeri " + sommaNum);;
+    console.log("somma dei due numeri " + sommaNum);
+    /*   function sommaNum() {
+          parseInt(numUtente) + numComputer;
+      }; */
+
 
     //CAPIAMO SE IL RISULTATO E' PARI O DISPARI
     const indicePari = sommaNum % 2 === 0;
@@ -46,36 +41,23 @@ btnUp.addEventListener("click", function () {
     } else {
         alert("hai perso");
     }
+}
+
+
+
+//L'UTENTE DEVE SCEGLIERE PARI O DISPARI
+btnPari.addEventListener("click", function () {
+    console.log("freccia su");
+
+    gioco("pari");
 
 });
 
 
-btnDown.addEventListener("click", function () {
+btnDispari.addEventListener("click", function () {
     console.log("freccia giù");
 
-    //L'UTENTE SCEGLIE UN NUMERO DA 1 A 5
-    const numUtente = prompt("Scegli un numero da 1 a 5");
-    console.log("numero utente " + numUtente);
-    //se il numero è minore di 0 o superiore di 5 o se è una stringa il risultato è nullo
-
-    //GENERIAMO UN UN NUMERO PER IL COMPUTER DA 1 A 5
-    const numComputer = Math.ceil(Math.random() * 5);
-    console.log("numero del computer " + numComputer);
-
-    // SOMMIAMO I DUE NUM
-    const sommaNum = parseInt(numUtente) + numComputer;
-    console.log("somma dei due numeri " + sommaNum);;
-
-    //CAPIAMO SE IL RISULTATO E' PARI O DISPARI
-    const indicePari = sommaNum % 2 === 0;
-    console.log(sommaNum % 2 === 0);
-
-
-    if (!indicePari) {
-        alert("hai vinto");
-    } else {
-        alert("hai perso");
-    }
+    gioco("dispari");
 });
 
 
