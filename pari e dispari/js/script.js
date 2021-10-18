@@ -10,6 +10,21 @@ Dichiariamo chi ha vinto. */
 const btnPari = document.querySelector(".pari");
 const btnDispari = document.querySelector(".dispari");
 
+function numCasuale() {
+    return Math.ceil(Math.random() * 5);
+}
+
+
+function indiceParita(n) {
+
+    if (n % 2 === 0) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
 function gioco(scelta) {
     //L'UTENTE SCEGLIE UN NUMERO DA 1 A 5
     const numUtente = prompt("Scegli un numero da 1 a 5");
@@ -17,11 +32,10 @@ function gioco(scelta) {
     //se il numero è minore di 0 o superiore di 5 o se è una stringa il risultato è nullo
 
     //GENERIAMO UN UN NUMERO PER IL COMPUTER DA 1 A 5
-    const numComputer = Math.ceil(Math.random() * 5);
+    const numComputer = numCasuale();
     console.log("numero del computer " + numComputer);
 
-    //GENERIAMO UN UN NUMERO PER IL COMPUTER DA 1 A 5 CON UNA FUNZIONE
-    //const numComputer = numCasuale();
+
 
     // SOMMIAMO I DUE NUM
     const sommaNum = parseInt(numUtente) + numComputer;
@@ -32,22 +46,36 @@ function gioco(scelta) {
 
 
     //CAPIAMO SE IL RISULTATO E' PARI O DISPARI
-    const indicePari = sommaNum % 2 === 0;
-    console.log(sommaNum % 2 === 0);
+    const pari = indiceParita(sommaNum);
+    console.log("il numero è pari? " + pari);
 
 
-    if (indicePari) {
-        alert("hai vinto");
+    if (scelta === "pari" && pari) {
+
+        alert("hai schiacciato pari e il numero è pari hai vinto");
+
+    } else if (scelta === "dispari" && !pari) {
+
+        alert("hai schiacciato dispari e il numero è dispari hai vinto");
+
     } else {
         alert("hai perso");
     }
+
+    //SE SCHIACCI PARI E IL NUMERO E' PARI : HAI VINTO
+    //SE SCHIACCI DISPARI E IL NUMERO E' DISPARI : HAI VINTO
+    //SE SCHIACCI PARI E IL NUMERO E' DISPARI : HAI PERSO
+
+
+
+
 }
 
 
 
 //L'UTENTE DEVE SCEGLIERE PARI O DISPARI
 btnPari.addEventListener("click", function () {
-    console.log("freccia su");
+    console.log("BOTTONE PARI");
 
     gioco("pari");
 
@@ -55,7 +83,7 @@ btnPari.addEventListener("click", function () {
 
 
 btnDispari.addEventListener("click", function () {
-    console.log("freccia giù");
+    console.log("BOTTONE DISPARI");
 
     gioco("dispari");
 });
